@@ -38,7 +38,14 @@ public class DebugUtil {
 
     public void infoPlayer(Component i) {
         if (this.getDebugMode()) {
-            Minecraft.getInstance().player.sendSystemMessage(i);
+            try {
+                Minecraft.getInstance().player.sendSystemMessage(i);
+            }
+            catch (NullPointerException nullPointerException) {
+                Log("Player is null: ");
+                Log(i.getString());
+            }
+
         }
     }
 
