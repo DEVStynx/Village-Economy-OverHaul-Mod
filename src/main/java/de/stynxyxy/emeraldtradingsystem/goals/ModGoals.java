@@ -21,7 +21,7 @@ public class ModGoals {
         Entity entity = event.getEntity();
         if (entity instanceof Villager villager) {
             villager.goalSelector.addGoal(1, new VillagerTradewVGoal(villager));
-            //System.out.println("Added Goal to Entity "+villager.getName());  | for Debugging
+            EmeraldTradingSystem.getDebugUtil().info("Added Goal to Entity "+villager.getName());  //| for Debugging
         }
 
     }

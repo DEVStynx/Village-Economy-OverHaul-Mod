@@ -1,5 +1,7 @@
 package de.stynxyxy.emeraldtradingsystem.goals.customGoals;
 
+import de.stynxyxy.emeraldtradingsystem.EmeraldTradingSystem;
+import de.stynxyxy.emeraldtradingsystem.util.DebugUtil;
 import de.stynxyxy.emeraldtradingsystem.util.PlayerUitl;
 import de.stynxyxy.emeraldtradingsystem.util.TradeUtil;
 import net.minecraft.network.chat.Component;
@@ -19,12 +21,14 @@ public class VillagerTradewVGoal extends Goal {
     private final Random random;
     private int cooldownTicks;
     private final int chance;
+    private DebugUtil debugUtil;
 
     public VillagerTradewVGoal(Villager villager) {
         this.villager = villager;
         this.chance = 100;
         this.random = new Random();
         this.cooldownTicks = 0;
+        this.debugUtil = EmeraldTradingSystem.getDebugUtil();
     }
 
     @Override
@@ -36,22 +40,22 @@ public class VillagerTradewVGoal extends Goal {
         }
 
         // Temporarily remove random chance to test logic
-        /*
+
         if (random.nextInt(chance) == 1) {
             return false;
         }
-        */
-        /*
+
+
         // Debugging: Checking if conditions are met
-        PlayerUitl.sendMessage(Component.literal("Villager offers empty: " + villager.getOffers().isEmpty() +
+        this.debugUtil.infoPlayer(Component.literal("Villager offers empty: " + villager.getOffers().isEmpty() +
                 " | Near villagers: " + !getNearestVillagers(TargetingConditions.forNonCombat().range(tradeRadius), villager.level()).isEmpty()));
 
         // Log all nearby villagers for debugging
         for (Villager v : getNearestVillagers(TargetingConditions.forNonCombat().range(tradeRadius), villager.level())) {
-            PlayerUitl.sendMessage(Component.literal("- " + v.getName() + " uuid: " + v.getUUID().toString()));
+            this.debugUtil.infoPlayer(Component.literal("- " + v.getName() + " uuid: " + v.getUUID().toString()));
         }
-        */
-        System.out.println(Component.literal("Cooldown for villager: "+cooldownTicks));
+
+        this.debugUtil.info("Cooldown for villager: "+cooldownTicks);
         // Only proceed if the villager has offers and nearby villagers are found
         return !villager.getOffers().isEmpty() &&
                 !getNearestVillagers(TargetingConditions.forNonCombat().range(tradeRadius), villager.level()).isEmpty();
@@ -72,11 +76,11 @@ public class VillagerTradewVGoal extends Goal {
         AABB aabb = new AABB(pos1, pos2);
 
         // Debugging: log the AABB for confirmation
-        //PlayerUitl.sendMessage(Component.literal("AABB pos1: " + pos1 + " | pos2: " + pos2));
+        this.debugUtil.info("AABB pos1: " + pos1 + " | pos2: " + pos2);
 
         // Find and log nearby villagers for debugging
         List<Villager> nearbyVillagers = world.getNearbyEntities(Villager.class, conditions, villager, aabb);
-        //PlayerUitl.sendMessage(Component.literal("Nearby villagers found: " + nearbyVillagers.size()));
+        this.debugUtil.info("Nearby villagers found: " + nearbyVillagers.size());
 
         return nearbyVillagers;
     }
@@ -95,8 +99,7 @@ public class VillagerTradewVGoal extends Goal {
             }
         }
 
-        // Notify when a trade happens
-        PlayerUitl.sendMessage(Component.literal("Villager traded!"));
+
 
         // Set cooldown to prevent constant trading
         this.cooldownTicks = 1000;

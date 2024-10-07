@@ -1,6 +1,7 @@
 package de.stynxyxy.emeraldtradingsystem;
 
 import com.mojang.logging.LogUtils;
+import de.stynxyxy.emeraldtradingsystem.util.DebugUtil;
 import net.minecraft.client.Minecraft;
 
 import net.minecraft.world.level.block.Blocks;
@@ -25,6 +26,12 @@ public class EmeraldTradingSystem {
     //LOGGEr
     private static final Logger LOGGER = LogUtils.getLogger();
 
+    public static DebugUtil getDebugUtil() {
+        return debugUtil;
+    }
+
+    private static DebugUtil debugUtil = new DebugUtil(true);
+
     //constructor
     public EmeraldTradingSystem() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -38,9 +45,8 @@ public class EmeraldTradingSystem {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         // Some common setup code
-        LOGGER.info("HELLO FROM COMMON SETUP");
-        LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
-
+        debugUtil.info("DIRT BLOCK >> "+ Blocks.DIRT.getName().toString());
+        debugUtil.info("HELLO FROM COMMON SETUP");
 
     }
 
@@ -49,7 +55,7 @@ public class EmeraldTradingSystem {
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         // Do something when the server starts
-        LOGGER.info("HELLO from server starting");
+        debugUtil.info("HELLO from server starting");
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
@@ -60,8 +66,8 @@ public class EmeraldTradingSystem {
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             // Some client setup code
-            LOGGER.info("HELLO FROM CLIENT SETUP");
-            LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+            debugUtil.info("HELLO FROM CLIENT SETUP");
+            debugUtil.info("MINECRAFT NAME >> {}"+ Minecraft.getInstance().getUser().getName());
         }
     }
 }

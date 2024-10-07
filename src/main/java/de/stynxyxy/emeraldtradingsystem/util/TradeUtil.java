@@ -1,5 +1,6 @@
 package de.stynxyxy.emeraldtradingsystem.util;
 
+import de.stynxyxy.emeraldtradingsystem.EmeraldTradingSystem;
 import de.stynxyxy.emeraldtradingsystem.capability.EmeraldCapability;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.npc.Villager;
@@ -10,7 +11,9 @@ import net.minecraftforge.common.util.LazyOptional;
 
 public class TradeUtil {
 
+
     public static void performTrade(Villager villager1, Villager villager2) {
+        DebugUtil debugUtil = EmeraldTradingSystem.getDebugUtil();
         LazyOptional<EmeraldCapability> villager1_cap = CapabilityUitl.getEmeraldCapability(villager1);
         LazyOptional<EmeraldCapability> villager2_cap = CapabilityUitl.getEmeraldCapability(villager2);
 
@@ -45,6 +48,7 @@ public class TradeUtil {
                     villager2.lookAt(villager1,1,1);
                     villager1.level().addParticle(ParticleTypes.TOTEM_OF_UNDYING,villager1.getEyePosition().x,villager1.getEyePosition().y,villager1.getEyePosition().z,0d,0d,0d);
                     villager2.level().addParticle(ParticleTypes.TOTEM_OF_UNDYING,villager2.getEyePosition().x,villager2.getEyePosition().y,villager2.getEyePosition().z,0d,0d,0d);
+                    debugUtil.info("Villager: "+villager1.getUUID().toString()+" and Villager: "+villager2.getUUID().toString()+" performed a trade successfully!");
                 }
             });
 
