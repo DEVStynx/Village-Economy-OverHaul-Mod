@@ -17,7 +17,7 @@ public class VillagerTradeMenuOutOfEmeraldsRenderer {
     boolean shouldrender;
 
     public VillagerTradeMenuOutOfEmeraldsRenderer() {
-        shouldrender = true;
+        
     }
 
     @SubscribeEvent
