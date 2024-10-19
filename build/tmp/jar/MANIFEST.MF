@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Specification-Title: emeraldtradingsystem
-Specification-Vendor: 
-Specification-Version: 1
-Implementation-Title: EmeraldTradingSystem
-Implementation-Version: 1.0-Beta
-Implementation-Vendor: 
-Implementation-Timestamp: 2024-10-07T17:36:23+0200
-
