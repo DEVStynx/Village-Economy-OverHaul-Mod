@@ -3,7 +3,8 @@
 
 ![Static Badge](https://img.shields.io/badge/Available%20for-%201.20.1-red?link=https%3A%2F%2Fgithub.com%2FDEVStynx%2FVillage-Economy-Overhaul-Mod%2Freleases%2Ftag%2FMinecraft-Forge-Mod)
 ![GitHub License](https://img.shields.io/github/license/DEVStynx/Village-Economy-Overhaul-Mod)
-![CurseForge Downloads](https://img.shields.io/curseforge/dt/1124240)
+![CurseForge Downloads](https://img.shields.io/curseforge/dt/1124240?link=https%3A%2F%2Flegacy.curseforge.com%2Fminecraft%2Fmc-mods%2Fvillage-economy-overhaul)
+
 
 
 
